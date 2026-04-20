@@ -60,41 +60,34 @@ A professional Retrieval-Augmented Generation (RAG) backend designed for a Langu
 
 Start the server:
 ```bash
-node src/app.js
+npm start
 ```
 The server will initialize the vector store and start listening on the configured port (default: 3000).
 
 ## 🔌 API Documentation
 
 ### POST /chat
-
 Sends a user message to the assistant and receives a context-aware response.
-
 **Request Body:**
 ```json
 {
-  "message": "What courses do you offer?"
+  "message": "What are the registration fees?"
 }
 ```
 
-**Successful Response:**
+### GET /metrics
+Returns real-time performance and usage metrics.
+**Response Body:**
 ```json
 {
-  "answer": "We offer English, French, and Spanish courses at all levels...",
-  "needs_human": false
-}
-```
-
-**Uncertain Response:**
-```json
-{
-  "answer": "I don't have enough information to answer that. Let me connect you with a human agent.",
-  "needs_human": true
+  "totalQueries": 25,
+  "humanEscalations": 3,
+  "cacheHits": 8,
+  "openAiCalls": 17
 }
 ```
 
 ## 🤖 n8n Integration
-
 To connect this backend with n8n:
 1. Use an **HTTP Request** node.
 2. **Method**: `POST`.
